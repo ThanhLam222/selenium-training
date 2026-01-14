@@ -9,7 +9,7 @@ public class ElementLocators {
     public static final By TEXT_BOX_ITEM = By.id("item-0");
 
     // 2. Text box title - Strategies: tagname
-    public static final By TEXT_BOX_TITLE = By.tagName("h1");
+    public static final By PAGE_TITLE = By.tagName("h1");
 
     // 3. Full name field on textbox page - Strategies: cssSelector
     public static final By FULL_NAME_FIELD = By.cssSelector("input[placeholder='Full Name']");

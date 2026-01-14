@@ -24,7 +24,7 @@ public class ElementTest {
 
         // 2. TEXT_BOX_TITLE (tagName)
         Assert.assertEquals(
-                driver.findElement(ElementLocators.TEXT_BOX_TITLE).getText(),
+                driver.findElement(ElementLocators.PAGE_TITLE).getText(),
                     "Text Box"
         );
 
@@ -59,8 +59,7 @@ public class ElementTest {
 
         // 10. ACTIVE_MENU_ITEM (cssSelector)
         Assert.assertTrue(
-                driver.findElement(ElementLocators.ACTIVE_MENU_ITEM)
-                            .getText().contains("Check Box")
+                driver.findElement(ElementLocators.ACTIVE_MENU_ITEM).getText().contains("Check Box")
         );
     }
 
@@ -72,8 +71,7 @@ public class ElementTest {
 
             // 1. contains(text())
             Assert.assertTrue(
-                    driver.findElement(ElementLocators.CHECK_BOX_CONTAINS)
-                            .isDisplayed()
+                    driver.findElement(ElementLocators.CHECK_BOX_CONTAINS).isDisplayed()
             );
 
             // 2. text()
@@ -84,8 +82,7 @@ public class ElementTest {
 
             // 3. normalize-space()
             Assert.assertTrue(
-                    driver.findElement(ElementLocators.ELEMENTS_NORMALIZE)
-                            .isDisplayed()
+                    driver.findElement(ElementLocators.ELEMENTS_NORMALIZE).isDisplayed()
             );
 
             // 4. Dynamic XPath
@@ -94,7 +91,7 @@ public class ElementTest {
             ).click();
 
             Assert.assertEquals(
-                    driver.findElement(ElementLocators.TEXT_BOX_TITLE).getText(),
+                    driver.findElement(ElementLocators.PAGE_TITLE).getText(),
                     "Radio Button"
             );
         }
