@@ -1,23 +1,43 @@
 package utils;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
-    private static Properties prop;
+    private static Properties prop = new Properties();
 
-    public static void loadConfig() {
+    public static void loadConfig(String exercise, boolean isCI) {
+            prop.clear();
+
+            loadFile("common.properties");
+            loadFile(exercise + ".properties");
+            if(isCI) {
+                loadFile("ci.properties");
+            }
+    }
+
+    private static void loadFile(String path) {
         try {
-            prop = new Properties();
-            FileInputStream inp = new FileInputStream("src/test/resources/config.properties");
+            InputStream inp = ConfigReader.class
+                    .getClassLoader()
+                    .getResourceAsStream(path);
+
+            if (inp == null) {
+                throw new RuntimeException("Cannot find config file: " + path);
+            }
+
             prop.load(inp);
+
         } catch (Exception e) {
-            System.out.println("Error when read config file: " + e.getMessage());
+            throw new RuntimeException("Failed to load " + path, e);
         }
     }
 
     public static String getProperty(String key) {
-        if (prop == null) loadConfig();
         return prop.getProperty(key);
+    }
+
+    public static boolean getBoolean(String key) {
+        return Boolean.parseBoolean(prop.getProperty(key));
     }
 }

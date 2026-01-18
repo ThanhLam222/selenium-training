@@ -1,17 +1,18 @@
 package Exercise1_2;
 
-import core.DriverManager;
-import locators.ElementLocators;
-import org.openqa.selenium.WebDriver;
+import base.BaseTest;
+import locators.Exercise1_2.CheckBoxPageLocators;
+import locators.Exercise1_2.CommonLocators;
+import locators.Exercise1_2.TextBoxPageLocators;
+import locators.Exercise1_2.ElementsMenuLocators;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utils.ConfigReader;
 
-public class ElementTest {
-    WebDriver driver;
-
-    @BeforeClass
-    public void setup() {
-        driver = DriverManager.initDriver();
+public class ElementTest extends BaseTest {
+    @Override
+    protected String getExerciseName() {
+        return "exercise1_2";
     }
 
     /**
@@ -20,46 +21,48 @@ public class ElementTest {
     @Test(priority = 1)
     public void testBasicLocators() {
         // 1. TEXT_BOX_ITEM (id)
-        driver.findElement(ElementLocators.TEXT_BOX_ITEM).click();
+        driver.findElement(ElementsMenuLocators.TEXT_BOX_ITEM).click();
 
         // 2. TEXT_BOX_TITLE (tagName)
         Assert.assertEquals(
-                driver.findElement(ElementLocators.PAGE_TITLE).getText(),
-                    "Text Box"
+                driver.findElement(CommonLocators.PAGE_TITLE).getText(),
+                    ConfigReader.getProperty("textbox.title")
         );
 
         // 3. FULL_NAME_FIELD (cssSelector)
-        driver.findElement(ElementLocators.FULL_NAME_FIELD).sendKeys("Automation Tester");
+        driver.findElement(TextBoxPageLocators.FULL_NAME_FIELD)
+                .sendKeys(ConfigReader.getProperty("textbox.fullname"));
 
         // 4. SUBMIT_BUTTON (className)
         Assert.assertTrue(
-                driver.findElement(ElementLocators.SUBMIT_BUTTON).isDisplayed()
+                driver.findElement(TextBoxPageLocators.SUBMIT_BUTTON).isDisplayed()
         );
 
         // 5. CHECK_BOX_ITEM (cssSelector)
-        driver.findElement(ElementLocators.CHECK_BOX_ITEM).click();
+        driver.findElement(ElementsMenuLocators.CHECK_BOX_ITEM).click();
 
         // 6. TOGGLE_BUTTON (ByChained)
-        driver.findElement(ElementLocators.TOGGLE_BUTTON).click();
+        driver.findElement(CheckBoxPageLocators.TOGGLE_BUTTON).click();
 
         // 7. LEFT_PANEL (className)
         Assert.assertTrue(
-                driver.findElement(ElementLocators.LEFT_PANEL).isDisplayed()
+                driver.findElement(ElementsMenuLocators.LEFT_PANEL).isDisplayed()
         );
 
         // 8. MENU_LIST (cssSelector)
         Assert.assertTrue(
-                driver.findElement(ElementLocators.MENU_LIST).isDisplayed()
+                driver.findElement(ElementsMenuLocators.MENU_LIST).isDisplayed()
         );
 
         // 9. ALL_MENU_ITEMS (tagName)
         Assert.assertTrue(
-                driver.findElements(ElementLocators.ALL_MENU_ITEMS).size() > 0
+                driver.findElements(ElementsMenuLocators.ALL_MENU_ITEMS).size() > 0
         );
 
         // 10. ACTIVE_MENU_ITEM (cssSelector)
         Assert.assertTrue(
-                driver.findElement(ElementLocators.ACTIVE_MENU_ITEM).getText().contains("Check Box")
+                driver.findElement(ElementsMenuLocators.ACTIVE_MENU_ITEM).getText()
+                        .contains(ConfigReader.getProperty("checkbox.title"))
         );
     }
 
@@ -71,34 +74,30 @@ public class ElementTest {
 
             // 1. contains(text())
             Assert.assertTrue(
-                    driver.findElement(ElementLocators.CHECK_BOX_CONTAINS).isDisplayed()
+                    driver.findElement(CheckBoxPageLocators.CHECK_BOX_CONTAINS).isDisplayed()
             );
 
             // 2. text()
             Assert.assertEquals(
-                    driver.findElement(ElementLocators.CHECK_BOX_TEXT).getText(),
-                    "Check Box"
+                    driver.findElement(CheckBoxPageLocators.CHECK_BOX_TEXT).getText(),
+                    ConfigReader.getProperty("menu.checkbox.text")
             );
 
             // 3. normalize-space()
             Assert.assertTrue(
-                    driver.findElement(ElementLocators.ELEMENTS_NORMALIZE).isDisplayed()
+                    driver.findElement(CommonLocators.ELEMENTS_NORMALIZE).isDisplayed()
             );
 
             // 4. Dynamic XPath
             driver.findElement(
-                    ElementLocators.menuByText("Radio Button")
+                    ElementsMenuLocators.menuByText(ConfigReader.getProperty("menu.radio.text"))
             ).click();
 
             Assert.assertEquals(
-                    driver.findElement(ElementLocators.PAGE_TITLE).getText(),
-                    "Radio Button"
+                    driver.findElement(CommonLocators.PAGE_TITLE).getText(),
+                    ConfigReader.getProperty("radiobutton.title")
             );
         }
 
-        @AfterClass
-        public void tearDown() {
-            DriverManager.quitDriver();
-        }
     }
 
