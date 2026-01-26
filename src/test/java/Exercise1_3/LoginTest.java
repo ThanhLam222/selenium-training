@@ -1,7 +1,7 @@
 package Exercise1_3;
 
-import POM.Exercise1_3.LoggedInSuccessPage;
-import POM.Exercise1_3.TestLoginPage;
+import pom.exercise1_3.LoggedInSuccessPage;
+import pom.exercise1_3.TestLoginPage;
 import base.BaseTest;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;

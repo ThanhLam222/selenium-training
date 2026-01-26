@@ -9,36 +9,36 @@ public class CalculatorBaseTest {
     protected Calculator calculator;
     protected SoftAssert softAssert;
 
-    @BeforeSuite
-    public void beforeSuite() {
+    @BeforeClass(alwaysRun = true)
+    public void beforeClass() {
         System.out.println("=== Before Suite ===");
         boolean isCI = Boolean.parseBoolean(System.getProperty("ci", "false"));
         ConfigReader.loadConfig("exercise2_1", isCI);
     }
 
-    @AfterSuite
-    public void afterSuite() {
+    @AfterClass(alwaysRun = true)
+    public void afterClass() {
         System.out.println("=== After Suite ===");
     }
 
-    @BeforeClass
-    public void beforeClass() {
-        System.out.println("=== Before Class ===");
-    }
+//    @BeforeClass
+//    public void beforeClass() {
+//        System.out.println("=== Before Class ===");
+//    }
 
-    @AfterClass
-    public void afterClass() {
-        System.out.println("=== After Class ===");
-    }
+//    @AfterClass
+//    public void afterClass() {
+//        System.out.println("=== After Class ===");
+//    }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         calculator = new Calculator();
         softAssert = new SoftAssert();
         System.out.println("=== Before Method ===");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("=== After Method ===");
     }

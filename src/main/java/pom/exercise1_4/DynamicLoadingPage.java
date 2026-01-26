@@ -1,4 +1,4 @@
-package POM.exercise1_4;
+package pom.exercise1_4;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
