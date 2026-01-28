@@ -5,6 +5,8 @@ import locators.Exercise1_2.CheckBoxPageLocators;
 import locators.Exercise1_2.CommonLocators;
 import locators.Exercise1_2.TextBoxPageLocators;
 import locators.Exercise1_2.ElementsMenuLocators;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.ConfigReader;
@@ -26,7 +28,7 @@ public class ElementTest extends BaseTest {
         // 2. TEXT_BOX_TITLE (tagName)
         Assert.assertEquals(
                 driver.findElement(CommonLocators.PAGE_TITLE).getText(),
-                    ConfigReader.getProperty("textbox.title")
+                ConfigReader.getProperty("textbox.title")
         );
 
         // 3. FULL_NAME_FIELD (cssSelector)
@@ -42,7 +44,20 @@ public class ElementTest extends BaseTest {
         driver.findElement(ElementsMenuLocators.CHECK_BOX_ITEM).click();
 
         // 6. TOGGLE_BUTTON (ByChained)
-        driver.findElement(CheckBoxPageLocators.TOGGLE_BUTTON).click();
+        WebElement toggleBtn =
+                driver.findElement(CheckBoxPageLocators.TOGGLE_BUTTON);
+
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});", toggleBtn
+        );
+
+        try {
+            toggleBtn.click();
+        } catch (RuntimeException e) {
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].click();", toggleBtn
+            );
+        }
 
         // 7. LEFT_PANEL (className)
         Assert.assertTrue(
@@ -66,38 +81,38 @@ public class ElementTest extends BaseTest {
         );
     }
 
-        /**
-         * TEST 2: Verify ADVANCED XPath locators
-         */
-        @Test(priority = 2)
-        public void testAdvancedXPathLocators() {
+    /**
+     * TEST 2: Verify ADVANCED XPath locators
+     */
+    @Test(priority = 2)
+    public void testAdvancedXPathLocators() {
 
-            // 1. contains(text())
-            Assert.assertTrue(
-                    driver.findElement(CheckBoxPageLocators.CHECK_BOX_CONTAINS).isDisplayed()
-            );
+        // 1. contains(text())
+        Assert.assertTrue(
+                driver.findElement(CheckBoxPageLocators.CHECK_BOX_CONTAINS).isDisplayed()
+        );
 
-            // 2. text()
-            Assert.assertEquals(
-                    driver.findElement(CheckBoxPageLocators.CHECK_BOX_TEXT).getText(),
-                    ConfigReader.getProperty("menu.checkbox.text")
-            );
+        // 2. text()
+        Assert.assertEquals(
+                driver.findElement(CheckBoxPageLocators.CHECK_BOX_TEXT).getText(),
+                ConfigReader.getProperty("menu.checkbox.text")
+        );
 
-            // 3. normalize-space()
-            Assert.assertTrue(
-                    driver.findElement(CommonLocators.ELEMENTS_NORMALIZE).isDisplayed()
-            );
+        // 3. normalize-space()
+        Assert.assertTrue(
+                driver.findElement(CommonLocators.ELEMENTS_NORMALIZE).isDisplayed()
+        );
 
-            // 4. Dynamic XPath
-            driver.findElement(
-                    ElementsMenuLocators.menuByText(ConfigReader.getProperty("menu.radio.text"))
-            ).click();
+        // 4. Dynamic XPath
+        driver.findElement(
+                ElementsMenuLocators.menuByText(ConfigReader.getProperty("menu.radio.text"))
+        ).click();
 
-            Assert.assertEquals(
-                    driver.findElement(CommonLocators.PAGE_TITLE).getText(),
-                    ConfigReader.getProperty("radiobutton.title")
-            );
-        }
-
+        Assert.assertEquals(
+                driver.findElement(CommonLocators.PAGE_TITLE).getText(),
+                ConfigReader.getProperty("radiobutton.title")
+        );
     }
+
+}
 
