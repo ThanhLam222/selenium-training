@@ -1,7 +1,7 @@
 package Exercise1_3;
 
-import pom.exercise1_3.LoggedInSuccessPage;
-import pom.exercise1_3.TestLoginPage;
+import pom.exercise1_3.SuccessPage;
+import pom.exercise1_3.LoginPage;
 import base.BaseTest;
 import org.openqa.selenium.WindowType;
 import org.testng.annotations.Test;
@@ -17,18 +17,21 @@ public class LoginTest extends BaseTest {
     @Test(priority = 1)
     public void successMessageTest() {
         // Login
-        TestLoginPage loginPage = new TestLoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
         loginPage.navigateToLoginPage();
 
         String userName = ConfigReader.getProperty("valid.username");
         String passWord = ConfigReader.getProperty("valid.password");
 
-        LoggedInSuccessPage successPage = loginPage.login(userName, passWord);
+        SuccessPage successPage = loginPage.login(userName, passWord);
 
         //Verify success message
         // Check redirect to correct URL
         Assert.assertTrue(successPage.isAt());
+
+        // Check user logged in
+        Assert.assertTrue(successPage.isLoggedIn());
 
         // Check success message title
         Assert.assertEquals(successPage.getSuccessTitle(), ConfigReader.getProperty("success.title"));
@@ -60,7 +63,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 2)
     public void invalidUserNameTest() {
         // Login
-        TestLoginPage loginPage = new TestLoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
         loginPage.navigateToLoginPage();
 
@@ -77,7 +80,7 @@ public class LoginTest extends BaseTest {
     @Test(priority = 3)
     public void invalidPasswordTest() {
         // Login
-        TestLoginPage loginPage = new TestLoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
         loginPage.navigateToLoginPage();
 
