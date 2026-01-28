@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Calculator Suite">
+<suite name="Config testNG.xml suite" parallel="classes" thread-count="3">
+    <parameter name="isCI" value="false"/>
 
     <test name="Calculator Tests">
         <groups>
@@ -12,6 +13,16 @@
 
         <classes>
             <class name="exercise2_1.CalculatorTest"/>
+        </classes>
+    </test>
+
+    <test name="Element Tests">
+        <classes>
+            <class name="Exercise1_2.ElementTest">
+                <methods>
+                    <include name="testBasicLocators"/>
+                </methods>
+            </class>
         </classes>
     </test>
 

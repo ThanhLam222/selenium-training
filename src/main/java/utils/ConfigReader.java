@@ -4,10 +4,10 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
-    private static Properties prop = new Properties();
+    private static ThreadLocal<Properties> prop = ThreadLocal.withInitial(Properties::new);;
 
     public static void loadConfig(String exercise, boolean isCI) {
-        prop.clear();
+        prop.get().clear();
 
         loadFile("common.properties");
         loadFile(exercise + ".properties");
@@ -26,7 +26,7 @@ public class ConfigReader {
                 throw new RuntimeException("Cannot find config file: " + path);
             }
 
-            prop.load(inp);
+            prop.get().load(inp);
 
         } catch (Exception e) {
             throw new RuntimeException("Failed to load " + path, e);
@@ -34,10 +34,10 @@ public class ConfigReader {
     }
 
     public static String getProperty(String key) {
-        return prop.getProperty(key);
+        return prop.get().getProperty(key);
     }
 
     public static boolean getBoolean(String key) {
-        return Boolean.parseBoolean(prop.getProperty(key));
+        return Boolean.parseBoolean(prop.get().getProperty(key));
     }
 }
