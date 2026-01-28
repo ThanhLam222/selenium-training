@@ -1,4 +1,4 @@
-package POM.exercise1_3;
+package pom.exercise1_3;
 
 import org.openqa.selenium.WebDriver;
 import utils.ConfigReader;
