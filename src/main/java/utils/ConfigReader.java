@@ -7,13 +7,13 @@ public class ConfigReader {
     private static Properties prop = new Properties();
 
     public static void loadConfig(String exercise, boolean isCI) {
-            prop.clear();
+        prop.clear();
 
-            loadFile("common.properties");
-            loadFile(exercise + ".properties");
-            if(isCI) {
-                loadFile("ci.properties");
-            }
+        loadFile("common.properties");
+        loadFile(exercise + ".properties");
+        if (isCI) {
+            loadFile("ci.properties");
+        }
     }
 
     private static void loadFile(String path) {
