@@ -1,7 +1,7 @@
 package Exercise1_4;
 
 
-import POM.exercise1_4.DynamicLoadingPage;
+import pom.exercise1_4.DynamicLoadingPage;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
