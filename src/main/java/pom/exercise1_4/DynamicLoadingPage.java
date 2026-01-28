@@ -18,6 +18,17 @@ public class DynamicLoadingPage extends BasePage {
     }
 
     // Wait loading bar disappear - Advanced requirements
+
+    /**
+     * Wait until the loading bar disappears before proceeding
+     * This explicit wait handles dynamic loading where the element may:
+     * 1. Be completely removed from DOM after loading finishes
+     * 2. Still exist in DOM but becomes invisible (display: none)
+     * Using findElements() avoids NoSuchElementException when the loading bar is removed,
+     * while isDisplayed() covers the case where it is hidden.
+     *
+     */
+
     public void waitForLoadingDisappear() {
         wait.until(driver ->
                 driver.findElements(LOADING_BAR).isEmpty()

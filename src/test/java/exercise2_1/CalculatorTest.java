@@ -6,7 +6,7 @@ import org.testng.annotations.*;
 import utils.ConfigReader;
 
 public class CalculatorTest extends CalculatorBaseTest {
-    @Test(groups = "basic")
+    @Test(priority = 1, groups = "basic")
     public void testAdd() {
         int a = Integer.parseInt(ConfigReader.getProperty("add.a"));
         int b = Integer.parseInt(ConfigReader.getProperty("add.b"));
@@ -14,7 +14,7 @@ public class CalculatorTest extends CalculatorBaseTest {
         Assert.assertEquals(calculator.add(a, b), expected);
     }
 
-    @Test(groups = "basic")
+    @Test(priority = 2, groups = "basic")
     public void testSubtract() {
         int a = Integer.parseInt(ConfigReader.getProperty("subtract.a"));
         int b = Integer.parseInt(ConfigReader.getProperty("subtract.b"));
@@ -22,7 +22,7 @@ public class CalculatorTest extends CalculatorBaseTest {
         Assert.assertEquals(calculator.subtract(a, b), expected);
     }
 
-    @Test(groups = "basic")
+    @Test(priority = 3, groups = "basic")
     public void testMultiply() {
         int a = Integer.parseInt(ConfigReader.getProperty("mul.a"));
         int b = Integer.parseInt(ConfigReader.getProperty("mul.b"));
@@ -34,7 +34,7 @@ public class CalculatorTest extends CalculatorBaseTest {
         softAssert.assertAll();
     }
 
-    @Test(groups = "basic")
+    @Test(priority = 4, groups = "basic")
     public void testDivide() {
         int a = Integer.parseInt(ConfigReader.getProperty("div.norm.a"));
         int b = Integer.parseInt(ConfigReader.getProperty("div.norm.b"));
@@ -42,7 +42,7 @@ public class CalculatorTest extends CalculatorBaseTest {
         Assert.assertEquals(calculator.divide(a, b), expected);
     }
 
-    @Test(groups = "edge")
+    @Test(priority = 5, groups = "edge")
     public void testDivideByZero() {
         int a = Integer.parseInt(ConfigReader.getProperty("div.edge.a"));
         int b = Integer.parseInt(ConfigReader.getProperty("div.edge.b"));
