@@ -3,6 +3,7 @@ package Exercise1_1;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
@@ -29,7 +30,17 @@ public class Exercise1_1Test {
         WebDriver driver;
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+
+            ChromeOptions options = new ChromeOptions();
+
+            if (Boolean.parseBoolean(System.getProperty("ci", "false"))) {
+                options.addArguments("--headless=new");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--window-size=1920,1080");
+            }
+
+            driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
