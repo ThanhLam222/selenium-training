@@ -65,12 +65,12 @@ public class LoginTest extends BaseTest {
         // Login
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.navigateToLoginPage();
-
         String userName = ConfigReader.getProperty("invalid.username");
         String passWord = ConfigReader.getProperty("valid.password");
         String errorMessage = ConfigReader.getProperty("error.username");
-        loginPage.login(userName, passWord);
+
+        loginPage.navigateToLoginPage()
+                .login(userName, passWord);
 
         // Verify message displayed and content of message
         Assert.assertTrue(loginPage.isErrorMessageDisplayed());
@@ -82,11 +82,13 @@ public class LoginTest extends BaseTest {
         // Login
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.navigateToLoginPage();
-
         String userName = ConfigReader.getProperty("valid.username");
         String passWord = ConfigReader.getProperty("invalid.password");
         String errorMessage = ConfigReader.getProperty("error.password");
+
+        loginPage.navigateToLoginPage()
+                .login(userName, passWord);
+
         loginPage.login(userName, passWord);
 
         // Verify message displayed and content of message

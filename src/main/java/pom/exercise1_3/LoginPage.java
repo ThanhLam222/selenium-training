@@ -22,29 +22,32 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void navigateToLoginPage() {
+    public LoginPage navigateToLoginPage() {
         driver.get(getConfig("url") + getConfig("login.url"));
+        return this;
     }
 
-    public void enterUsername(String username) {
+    public LoginPage enterUsername(String username) {
         usernameInput.clear();
         usernameInput.sendKeys(username);
+        return this;
     }
 
-    public void enterPassword(String password) {
+    public LoginPage enterPassword(String password) {
         passwordInput.clear();
         passwordInput.sendKeys(password);
+        return this;
     }
 
-    public void clickSubmit() {
+    public SuccessPage clickSubmit() {
         submitBtn.click();
+        return new SuccessPage(driver);
     }
 
     public SuccessPage login(String username, String password) {
-        enterUsername(username);
-        enterPassword(password);
-        clickSubmit();
-        return new SuccessPage(driver);
+        return enterUsername(username)
+                .enterPassword(password)
+                .clickSubmit();
     }
 
     public boolean isErrorMessageDisplayed() {
