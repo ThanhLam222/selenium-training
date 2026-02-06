@@ -40,7 +40,7 @@ public class DriverManager {
 
         driver.manage().window().maximize();
 
-        // Navigate to https://demoqa.com/elements
+        // Navigate to https://demoqa.com/
         String url = ConfigReader.getProperty("url");
         driver.get(url);
 
