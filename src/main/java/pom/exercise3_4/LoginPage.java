@@ -2,7 +2,6 @@ package pom.exercise3_4;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.devtools.v141.profiler.model.Profile;
 
 public class LoginPage extends BasePage {
     private final By userNameInp = By.id("userName");

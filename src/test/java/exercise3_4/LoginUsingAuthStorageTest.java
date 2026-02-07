@@ -3,7 +3,6 @@ package exercise3_4;
 import base.BaseTest;
 import core.DriverManager;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pom.exercise3_4.LoginPage;
