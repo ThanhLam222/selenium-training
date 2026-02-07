@@ -4,7 +4,11 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.*;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,7 +53,7 @@ public class CookieUtils {
     }
 
     public static void loadCookiesFromFile(WebDriver driver, String filePath) throws IOException,
-            ClassNotFoundException{
+            ClassNotFoundException {
         Path path = Paths.get(filePath);
 
         if (!Files.exists(path)) {
