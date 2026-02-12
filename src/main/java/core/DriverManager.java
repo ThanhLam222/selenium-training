@@ -8,6 +8,12 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.ConfigReader;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+
 public class DriverManager {
     private static WebDriver driver;
 
@@ -17,7 +23,24 @@ public class DriverManager {
 
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
+
+            // SET UP DOWNLOAD DIRECTORY
+            Path downloadPath = Paths.get("target", "downloads");
+            try {
+                Files.createDirectories(downloadPath);
+            } catch (Exception e) {
+                throw new RuntimeException("Cannot create download directory", e);
+            }
+
+            String downloadDir = downloadPath.toAbsolutePath().toString();
+
+            Map<String, Object> prefs = new HashMap<>();
+            prefs.put("download.default_directory", downloadDir);
+            prefs.put("download.prompt_for_download", false);
+            prefs.put("safebrowsing.enabled", true);
+
             ChromeOptions options = new ChromeOptions();
+            options.setExperimentalOption("prefs", prefs);
 
             if (isCI) {
                 options.addArguments("--headless");
