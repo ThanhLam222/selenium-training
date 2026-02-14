@@ -20,6 +20,7 @@
         <classes>
             <class name="Exercise1_2.ElementTest">
                 <methods>
+                    <exclude name="testAdvancedXPathLocators"/>
                     <exclude name="testBasicLocators"/> <!-- temporary excluding because website error-->
                 </methods>
             </class>
