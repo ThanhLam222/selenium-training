@@ -76,7 +76,7 @@ public class LocatorsTest extends BaseTest {
         String password = ConfigReader.getProperty("password");
 
         String errorMessage = new LoginPage(driver).navigateToLoginPage()
-                .LoginWithInvalidPassword(username, password)
+                .loginWithInvalidPassword(username, password)
                 .getErrorMessage();
         Assert.assertTrue(errorMessage.contains(ConfigReader.getProperty("error")));
     }

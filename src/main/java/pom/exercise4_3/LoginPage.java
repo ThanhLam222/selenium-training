@@ -23,7 +23,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage LoginWithInvalidPassword(String username, String password) {
+    public LoginPage loginWithInvalidPassword(String username, String password) {
         sendKeys(usernameInp, username);
         sendKeys(passwordInp, password);
         click(loginBtn);
