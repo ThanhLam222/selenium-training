@@ -39,8 +39,20 @@ public class DriverManager {
             prefs.put("download.prompt_for_download", false);
             prefs.put("safebrowsing.enabled", true);
 
+            // DISABLE PASSWORD MANAGER
+            prefs.put("credentials_enable_service", false);
+            prefs.put("profile.password_manager_enabled", false);
+
+
             ChromeOptions options = new ChromeOptions();
+            options.addArguments("--incognito");
+
             options.setExperimentalOption("prefs", prefs);
+
+            // disable annoying UI
+            options.addArguments("--disable-notifications");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-save-password-bubble");
 
             if (isCI) {
                 options.addArguments("--headless");
