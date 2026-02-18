@@ -17,17 +17,17 @@ public class DropdownPage extends BasePage {
     }
 
     public DropdownPage selectOptByVisibleText(String text) {
-        selectByVisibleText(dropdown,text);
+        selectByVisibleText(dropdown, text);
         return this;
     }
 
     public DropdownPage selectOptByValue(String value) {
-        selectByValue(dropdown,value);
+        selectByValue(dropdown, value);
         return this;
     }
 
     public DropdownPage selectOptByIndex(int index) {
-        selectByIndex(dropdown,index);
+        selectByIndex(dropdown, index);
         return this;
     }
 

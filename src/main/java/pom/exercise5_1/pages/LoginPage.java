@@ -21,7 +21,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage enterUsername(String username) {
-        sendKeys(usernameInp,username);
+        sendKeys(usernameInp, username);
         return this;
     }
 
