@@ -38,6 +38,7 @@ public class DriverManager {
             prefs.put("download.default_directory", downloadDir);
             prefs.put("download.prompt_for_download", false);
             prefs.put("safebrowsing.enabled", true);
+            prefs.put("safebrowsing.disable_download_protection", true);
 
             // DISABLE PASSWORD MANAGER
             prefs.put("credentials_enable_service", false);
