@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.ConfigReader;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePage {
     protected WebDriver driver;
@@ -30,6 +31,11 @@ public class BasePage {
     protected WebElement findElement(By locator) {
         waitForVisible(locator);
         return driver.findElement(locator);
+    }
+
+    protected List<WebElement> findElements(By locator) {
+        waitForVisible(locator);
+        return driver.findElements(locator);
     }
 
     protected WebElement waitForVisible(By locator) {
@@ -71,6 +77,10 @@ public class BasePage {
     protected String getText(WebElement element) {
         waitForVisible(element);
         return element.getText();
+    }
+
+    protected String getAttribute(By locator, String attribute) {
+        return findElement(locator).getAttribute(attribute);
     }
 
     protected boolean isDisplayed(By locator) {

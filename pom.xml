@@ -38,6 +38,13 @@
             <version>6.3.3</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- accessibility scanner -->
+        <dependency>
+            <groupId>com.deque.html.axe-core</groupId>
+            <artifactId>selenium</artifactId>
+            <version>4.10.0</version>
+        </dependency>
     </dependencies>
 
     <build>

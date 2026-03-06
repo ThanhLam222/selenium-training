@@ -20,10 +20,16 @@
         <classes>
             <class name="Exercise1_2.ElementTest">
                 <methods>
-                    <exclude name="testAdvancedXPathLocators"/>
-                    <exclude name="testBasicLocators"/> <!-- temporary excluding because website error-->
+                    <include name="testAdvancedXPathLocators"/>
+                    <include name="testBasicLocators"/> <!-- temporary excluding because website error-->
                 </methods>
             </class>
+        </classes>
+    </test>
+
+    <test name="Accessibility Tests">
+        <classes>
+            <class name="exercise5_3.AccessibilityTest"/>
         </classes>
     </test>
 
